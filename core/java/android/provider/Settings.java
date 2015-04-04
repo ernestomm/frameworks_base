@@ -4958,6 +4958,12 @@ public final class Settings {
         private static final Validator QS_PANEL_BG_COLOR_WALL_VALIDATOR =
                 ANY_INTEGER_VALIDATOR;
 
+	    /**
+         * show the membar in recents
+         *  @hide
+         */
+        public static final String SYSTEMUI_RECENTS_MEM_DISPLAY = "systemui_recents_mem_display";
+
         /**
          * Whether to change the color of the qs panel based on wallpaper
          * @hide
