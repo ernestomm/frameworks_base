@@ -33,6 +33,7 @@ import com.android.systemui.qs.tiles.CaffeineTile;
 import com.android.systemui.qs.tiles.ColorInversionTile;
 import com.android.systemui.qs.tiles.DataSaverTile;
 import com.android.systemui.qs.tiles.DndTile;
+import com.android.systemui.qs.tiles.ExpandedDesktopTile;
 import com.android.systemui.qs.tiles.FlashlightTile;
 import com.android.systemui.qs.tiles.GamingModeTile;
 import com.android.systemui.qs.tiles.HotspotTile;
@@ -113,6 +114,8 @@ public class QSFactoryImpl implements QSFactory {
                 return new CompassTile(mHost);
             case "sound":
                 return new SoundTile(mHost);
+            case "expanded_desktop":
+                return new ExpandedDesktopTile(mHost);
         }
 
         // Intent tiles.
