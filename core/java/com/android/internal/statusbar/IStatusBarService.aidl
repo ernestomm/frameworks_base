@@ -108,4 +108,5 @@ interface IStatusBarService
      * PixysOS
      */
     void toggleCameraFlash();
+    void restartUI();
 }
