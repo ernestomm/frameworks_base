@@ -210,4 +210,6 @@
 
     <string name="recents_custom_android_n">Clear All</string>
 
+    <!-- Statusbae icon -->
+    <string name="statusbar_items_title">Statusbar icon</string>
 </resources>
