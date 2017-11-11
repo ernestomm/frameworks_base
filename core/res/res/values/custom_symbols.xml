@@ -166,4 +166,7 @@
     <!-- Whether device has a physical display cutout -->
     <java-symbol type="bool" name="config_physicalDisplayCutout" />
 
+    <!-- Whether device supports an alt. ambient display -->
+    <java-symbol type="bool" name="config_alt_ambient_display"/>
+
 </resources>
