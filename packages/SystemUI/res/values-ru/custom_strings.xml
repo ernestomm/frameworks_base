@@ -25,4 +25,6 @@
     <string name="global_action_restart_bootloader">Загрузчик</string>
     <!-- Button to restart the device into download mode, within the Restart Options dialog -->
     <string name="global_action_restart_download">Режим Fastboot</string>
+
+    <string name="status_bar_roaming">Роуминг</string>
 </resources>
