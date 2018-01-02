@@ -79,8 +79,6 @@ public class QSContainerImpl extends FrameLayout {
     private int mUserThemeSetting;
     private boolean mSetQsFromWall;
     private boolean mSetQsFromAccent;
-    private boolean mUseBlackTheme = false;
-    private boolean mUseDarkTheme = false;
     private boolean mSetQsFromResources;
     private SysuiColorExtractor mColorExtractor;
 
@@ -160,9 +158,6 @@ public class QSContainerImpl extends FrameLayout {
             getContext().getContentResolver().registerContentObserver(Settings.Secure
                     .getUriFor(Settings.Secure.THEME_MODE), false,
                     this, UserHandle.USER_ALL);
-            getContext().getContentResolver().registerContentObserver(Settings.System
-                    .getUriFor(Settings.System.PREFER_BLACK_THEMES), false,
-                    this, UserHandle.USER_ALL);
         }
 
         @Override
@@ -191,21 +186,11 @@ public class QSContainerImpl extends FrameLayout {
                 UserHandle.USER_CURRENT);
         mUserThemeSetting = Settings.Secure.getIntForUser(mContext.getContentResolver(),
                 Settings.Secure.THEME_MODE, 0, ActivityManager.getCurrentUser());
-        boolean blackTheme = Settings.System.getIntForUser(mContext.getContentResolver(),
-                Settings.System.PREFER_BLACK_THEMES, 0, ActivityManager.getCurrentUser()) == 1;
         if (mUserThemeSetting == 0) {
             // The system wallpaper defines if system theme should be light or dark.
             WallpaperColors systemColors = null;
             if (mColorExtractor != null)
                  systemColors = mColorExtractor.getWallpaperColors(WallpaperManager.FLAG_SYSTEM);
-            mUseDarkTheme = systemColors != null
-                    && (systemColors.getColorHints() & WallpaperColors.HINT_SUPPORTS_DARK_THEME) != 0;
-        } else {
-            mUseDarkTheme = mUserThemeSetting == 2;
-            mUseBlackTheme = blackTheme && mUseDarkTheme;
-            // Make sure we turn off dark theme if we plan using black
-            if (mUseBlackTheme)
-                mUseDarkTheme = false;
         }
         mCurrentColor = mSetQsFromAccent
                 ? getContext().getResources().getColor(R.color.accent_device_default_light)
@@ -359,8 +344,6 @@ public class QSContainerImpl extends FrameLayout {
 
         if (mSetQsFromResources) {
             try {
-                mOverlayManager.setEnabled(qsthemeDark, mUseDarkTheme, ActivityManager.getCurrentUser());
-                mOverlayManager.setEnabled(qsthemeBlack, mUseBlackTheme, ActivityManager.getCurrentUser());
                 mOverlayManager.setEnabled(qsAccentBlack, false, ActivityManager.getCurrentUser());
                 mOverlayManager.setEnabled(qsAccentWhite, false, ActivityManager.getCurrentUser());
             } catch (RemoteException e) {
@@ -368,10 +351,6 @@ public class QSContainerImpl extends FrameLayout {
             }
         } else {
             // Only set black qs for black themes
-            if (mUseBlackTheme)
-                qstheme = qsthemeBlack;
-            else
-                qstheme = qsthemeDark;
             try {
                 mOverlayManager.setEnabled(qstheme, isColorDark(mCurrentColor), ActivityManager.getCurrentUser());
                 mOverlayManager.setEnabled(qsAccentBlack, !isColorDark(mCurrentColor), ActivityManager.getCurrentUser());
