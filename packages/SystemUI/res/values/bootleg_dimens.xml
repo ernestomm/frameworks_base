@@ -21,4 +21,7 @@
     <dimen name="ambient_clock_forced_top_padding">10dp</dimen>
     <dimen name="ambient_clock_forced_bottom_padding">0dp</dimen>
 
+    <!-- Screenrecord -->
+    <dimen name="screenrecord_hint_size">48dp</dimen>
+
 </resources>
