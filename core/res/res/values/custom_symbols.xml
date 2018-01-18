@@ -188,4 +188,7 @@
 
     <java-symbol type="array" name="config_blockPackagesSensorDrain" />
 
+    <!-- Ambient display music ticker -->
+    <java-symbol type="bool" name="config_canForceDozeNotifications" />
+
 </resources>

@@ -4475,94 +4475,6 @@ public final class Settings {
                BOOLEAN_VALIDATOR;
 
         /**
-         * Whether Ambient Play enabled/disabled
-         *
-         * @hide
-         */
-        public static final String AMBIENT_RECOGNITION = "ambient_recognition";
-
-        /** @hide */
-        private static final Validator AMBIENT_RECOGNITION_VALIDATOR =
-                BOOLEAN_VALIDATOR;
-
-        /**
-         * Whether Ambient Play is shown on the lockscreen
-         *
-         * @hide
-         */
-        public static final String AMBIENT_RECOGNITION_KEYGUARD = "ambient_recognition_keyguard";
-
-        /** @hide */
-        private static final Validator AMBIENT_RECOGNITION_KEYGUARD_VALIDATOR =
-                BOOLEAN_VALIDATOR;
-
-        /**
-         * Whether Ambient Play notification is enabled
-         *
-         * @hide
-         */
-        public static final String AMBIENT_RECOGNITION_NOTIFICATION = "ambient_recognition_notification";
-
-        /** @hide */
-        private static final Validator AMBIENT_RECOGNITION_NOTIFICATION_VALIDATOR =
-                BOOLEAN_VALIDATOR;
-
-        /**
-         * Ambient Play saving options: Low battery
-         *
-         * @hide
-         */
-        public static final String AMBIENT_RECOGNITION_SAVING_OPTIONS_LOW_BATTERY = "ambient_recognition_saving_options_low_battery";
-
-        /** @hide */
-        private static final Validator AMBIENT_RECOGNITION_SAVING_OPTIONS_LOW_BATTERY_VALIDATOR =
-                BOOLEAN_VALIDATOR;
-
-        /**
-         * Ambient Play saving options: Mobile data
-         *
-         * @hide
-         */
-        public static final String AMBIENT_RECOGNITION_SAVING_OPTIONS_MOBILE_DATA = "ambient_recognition_saving_options_mobile_data";
-
-        /** @hide */
-        private static final Validator AMBIENT_RECOGNITION_SAVING_OPTIONS_MOBILE_DATA_VALIDATOR =
-                BOOLEAN_VALIDATOR;
-
-        /**
-         * Ambient Play saving options: Quiet period
-         *
-         * @hide
-         */
-        public static final String AMBIENT_RECOGNITION_SAVING_OPTIONS_QUIET_PERIOD = "ambient_recognition_saving_options_quiet_period";
-
-        /** @hide */
-        private static final Validator AMBIENT_RECOGNITION_SAVING_OPTIONS_QUIET_PERIOD_VALIDATOR =
-                BOOLEAN_VALIDATOR;
-
-        /**
-         * Ambient Play saving options: Quiet period start time
-         *
-         * @hide
-         */
-        public static final String AMBIENT_RECOGNITION_SAVING_OPTIONS_QUIET_PERIOD_START_TIME = "ambient_recognition_saving_options_quiet_period_start_time";
-
-        /** @hide */
-        private static final Validator AMBIENT_RECOGNITION_SAVING_OPTIONS_QUIET_PERIOD_START_TIME_VALIDATOR =
-                NON_NEGATIVE_INTEGER_VALIDATOR;
-
-        /**
-         * Ambient Play saving options: Quiet period end time
-         *
-         * @hide
-         */
-        public static final String AMBIENT_RECOGNITION_SAVING_OPTIONS_QUIET_PERIOD_END_TIME = "ambient_recognition_saving_options_quiet_period_end_time";
-
-        /** @hide */
-        private static final Validator AMBIENT_RECOGNITION_SAVING_OPTIONS_QUIET_PERIOD_END_TIME_VALIDATOR =
-                NON_NEGATIVE_INTEGER_VALIDATOR;
-
-        /**
          * Face auto unlock
          * @hide
          */
@@ -5155,6 +5067,14 @@ public final class Settings {
          * @hide
          */
         public static final String LESS_BORING_HEADS_UP = "less_boring_heads_up";
+
+        /**
+         * Force an Ambient notification when a new media track is being played
+         * 0 - disabled
+         * 1 - show track info within normal Ambient Display and force a new Ambient clean layout when skipping tracks
+         * @hide
+         */
+        public static final String FORCE_AMBIENT_FOR_MEDIA = "force_ambient_for_media";
 
         /**
          * Settings to backup. This is here so that it's in the same place as the settings
