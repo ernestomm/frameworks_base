@@ -27,4 +27,5 @@
     <string name="global_action_restart_download">Режим Fastboot</string>
 
     <string name="status_bar_roaming">Роуминг</string>
+    <string name="status_bar_data_saver">Экономия трафика</string>
 </resources>
