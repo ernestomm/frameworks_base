@@ -5106,26 +5106,31 @@ public final class Settings {
          */
         public static final String VIBRATE_ON_CONNECT = "vibrate_on_connect";
 
-         /** @hide */
+        /** @hide */
         private static final Validator VIBRATE_ON_CONNECT_VALIDATOR = BOOLEAN_VALIDATOR;
 
-         /**
+        /**
          * Whether the phone vibrates on disconnect
          * @hide
          */
         public static final String VIBRATE_ON_DISCONNECT = "vibrate_on_disconnect";
 
-         /** @hide */
+        /** @hide */
         private static final Validator VIBRATE_ON_DISCONNECT_VALIDATOR = BOOLEAN_VALIDATOR;
 
-         /**
+        /**
          * Whether the phone vibrates on call waiting
          * @hide
          */
         public static final String VIBRATE_ON_CALLWAITING = "vibrate_on_callwaiting";
 
-         /** @hide */
+        /** @hide */
         private static final Validator VIBRATE_ON_CALLWAITING_VALIDATOR = BOOLEAN_VALIDATOR;
+
+        /**
+         * @hide
+         */
+        public static final String NOTIFICATION_GUTS_KILL_APP_BUTTON = "notification_guts_kill_app_button";
 
         /**
          * Settings to backup. This is here so that it's in the same place as the settings
