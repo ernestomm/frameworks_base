@@ -208,4 +208,6 @@
     <!-- Ambient Display Pixel-Like string -->
     <string name="ambientmusic_songinfo">%s by %s</string>
 
+    <string name="recents_custom_android_n">Clear All</string>
+
 </resources>
