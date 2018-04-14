@@ -225,4 +225,8 @@
     <string name="status_bar_vpn">VPN</string>
     <string name="status_bar_roaming">Roaming</string>
     <string name="status_bar_data_saver">Data saver</string>
+
+    <!-- NavBar Tuner -->
+    <string name="nav_bar_layout_inverse">Swap back and recents</string>
+
 </resources>
