@@ -193,4 +193,7 @@
     <java-symbol type="string" name="reboot_title" />
     <java-symbol type="string" name="reboot_message" />
 
+    <!-- Flashlight proximity check -->
+    <java-symbol type="integer" name="config_flashlightProximityTimeout" />
+
 </resources>
