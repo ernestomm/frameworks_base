@@ -6500,5 +6500,8 @@ message MetricsEvent {
     // CustomSettings constant
     CUSTOM_SETTINGS = 1554;
 
+    // PIXYS custom constants
+    PIXYS = 1555;
+
   }
 }
