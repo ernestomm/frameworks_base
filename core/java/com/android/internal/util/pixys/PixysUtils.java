@@ -53,6 +53,7 @@ import android.net.NetworkInfo;
 import com.android.internal.R;
 
 import java.util.List;
+import java.util.Locale;
 
 import com.android.internal.R;
 import com.android.internal.statusbar.IStatusBarService;
@@ -300,6 +301,11 @@ public class PixysUtils {
                 }
             }
         }
+    }
+
+    public static boolean isChineseLanguage() {
+       return Resources.getSystem().getConfiguration().locale.getLanguage().startsWith(
+               Locale.CHINESE.getLanguage());
     }
 
     public static String batteryTemperature(Context context, Boolean ForC) {
