@@ -5063,7 +5063,7 @@ public final class Settings {
         private static final Validator MUTE_ANNOYING_NOTIFICATIONS_THRESHOLD_VALIDATOR = ANY_INTEGER_VALIDATOR;
 
         /**
-         * Wheter to show heads up only for dialer and sms apps
+         * Whether to show heads up only for dialer and sms apps
          * @hide
          */
         public static final String LESS_BORING_HEADS_UP = "less_boring_heads_up";
@@ -5075,6 +5075,27 @@ public final class Settings {
          * @hide
          */
         public static final String FORCE_AMBIENT_FOR_MEDIA = "force_ambient_for_media";
+
+        /**
+         * modify how the album art shows up on lockscreen
+         * 0 - default
+         * 1 - grayscale
+         * 2 - blurry
+         * @hide
+         */
+        public static final String LOCKSCREEN_ALBUM_ART_FILTER = "lockscreen_album_art_filter";
+
+        /**
+         * Hold current font name and name of the originating package Uses "|" as a delimiter
+         * @hide
+         */
+        public static final String FONT_INFO = "font_info";
+
+        /**
+         * Hold list of installed font provider packages. Uses "|" as a delimiter
+         * @hide
+         */
+        public static final String FONT_PACKAGES = "font_packages";
 
         /**
          * Settings to backup. This is here so that it's in the same place as the settings
