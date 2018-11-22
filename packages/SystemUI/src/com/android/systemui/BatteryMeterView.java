@@ -29,6 +29,7 @@ import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.database.ContentObserver;
 import android.graphics.Rect;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Handler;
 import android.provider.Settings;
@@ -69,13 +70,14 @@ public class BatteryMeterView extends LinearLayout implements
     private ImageView mBatteryIconView;
     private final CurrentUserTracker mUserTracker;
     private TextView mBatteryPercentView;
-
+    private static final String FONT_FAMILY = "sans-serif-medium";
     private BatteryController mBatteryController;
     private SettingObserver mSettingObserver;
     private int mTextColor;
     private int mLevel;
     private boolean mForceShowPercent;
     private boolean misQsbHeader;
+    private int mShowPercent;
     private boolean mShowPercentAvailable;
     private boolean mShowPercentInsideIcon;
     private boolean mShouldEnablePercentInsideIcon;
@@ -257,7 +259,9 @@ public class BatteryMeterView extends LinearLayout implements
         // text battery will always show percentage
         if (isCircleBattery()
                 || getMeterStyle() == BatteryMeterDrawableBase.BATTERY_STYLE_PORTRAIT) {
-            setForceShowPercent(pluggedIn);
+            if (!alwaysShowPercentage()) {
+                setForceShowPercent(pluggedIn);
+            }
             // mDrawable.setCharging(pluggedIn) will invalidate the view
         }
 
@@ -297,6 +301,7 @@ public class BatteryMeterView extends LinearLayout implements
     }
 
     private void updatePercentText() {
+        Typeface tf = Typeface.create(FONT_FAMILY, Typeface.NORMAL);
         if (mBatteryPercentView != null) {
             // Use the high voltage symbol ⚡ (u26A1 unicode) but prevent the system
             // to load its emoji colored variant with the uFE0E flag
@@ -306,6 +311,7 @@ public class BatteryMeterView extends LinearLayout implements
                     ? (bolt + " ") : "";
             mBatteryPercentView.setText(mChargeIndicator +
                     NumberFormat.getPercentInstance().format(mLevel / 100f));
+			mBatteryPercentView.setTypeface(tf);
         }
     }
 
@@ -313,8 +319,9 @@ public class BatteryMeterView extends LinearLayout implements
         final boolean showing = mBatteryPercentView != null;
         int style = Settings.System.getIntForUser(getContext().getContentResolver(),
                 SHOW_BATTERY_PERCENT, 1, mUser);
+        mShowPercent = style;
 
-        boolean showAnyway = mForceShowPercent || mPowerSave || mCharging;
+        boolean showAnyway = alwaysShowPercentage() || mPowerSave || mCharging;
         if (showAnyway) style = 1; // Default view
         switch (style) {
             case 1:
@@ -479,12 +486,18 @@ public class BatteryMeterView extends LinearLayout implements
         misQsbHeader = true;
     }
 
+    private boolean alwaysShowPercentage() {
+        return misQsbHeader
+                && (getMeterStyle() == BatteryMeterDrawableBase.BATTERY_STYLE_HIDDEN
+                || (getMeterStyle() != BatteryMeterDrawableBase.BATTERY_STYLE_HIDDEN && mShowPercent == 0/*hidden*/));
+    }
+
     private void updateBatteryStyle(String styleStr) {
         final int style = styleStr == null ?
                 BatteryMeterDrawableBase.BATTERY_STYLE_PORTRAIT : Integer.parseInt(styleStr);
         mDrawable.setMeterStyle(style);
 
-        mForceShowPercent = misQsbHeader ? true : false;
+        mForceShowPercent = alwaysShowPercentage() ? true : false;
 
         switch (style) {
             case BatteryMeterDrawableBase.BATTERY_STYLE_TEXT:
