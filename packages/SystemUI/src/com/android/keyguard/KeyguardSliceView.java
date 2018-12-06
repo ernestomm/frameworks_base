@@ -26,6 +26,7 @@ import android.arch.lifecycle.Observer;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.graphics.Typeface;
 import android.net.Uri;
@@ -99,6 +100,8 @@ public class KeyguardSliceView extends LinearLayout implements View.OnClickListe
     private boolean mHasHeader;
     private Slice mSlice;
     private boolean mPulsing;
+
+    private static final String FONT_FAMILY_MEDIUM = "sans-serif-medium";
 
     public KeyguardSliceView(Context context) {
         this(context, null, 0);
@@ -192,7 +195,10 @@ public class KeyguardSliceView extends LinearLayout implements View.OnClickListe
                     true /* showStartItem */);
             SliceItem mainTitle = header.getTitleItem();
             CharSequence title = mainTitle != null ? mainTitle.getText() : null;
+            Typeface tf = Typeface.create(FONT_FAMILY_MEDIUM, Typeface.NORMAL);
+
             mTitle.setText(title);
+            mTitle.setTypeface(tf);
         }
 
         mClickActions.clear();
@@ -541,6 +547,8 @@ public class KeyguardSliceView extends LinearLayout implements View.OnClickListe
         @Override
         public void onDensityOrFontScaleChanged() {
             updatePadding();
+            Typeface tf = Typeface.create(FONT_FAMILY_MEDIUM, Typeface.NORMAL);
+            setTypeface(tf);
         }
 
         @Override
