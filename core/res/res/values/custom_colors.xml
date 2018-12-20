@@ -75,4 +75,7 @@
 
     <color name="qs_icon_active_color">#ffffffff</color>
 
+    <!-- QS Accent -->
+    <color name="qs_accent">@color/accent_device_default_light</color>
+
 </resources>
