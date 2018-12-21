@@ -34,6 +34,7 @@ import android.os.Message;
 import android.os.UserHandle;
 import android.os.Vibrator;
 import android.provider.Settings;
+import android.provider.Settings.System;
 import android.service.quicksettings.Tile;
 import android.text.format.DateUtils;
 import android.util.ArraySet;
@@ -407,6 +408,18 @@ public abstract class QSTileImpl<TState extends State> implements QSTile {
 
         boolean enableQsTileTinting = context.getResources().getBoolean(R.bool.config_enable_qs_tile_tinting);
 
+        int activeDefault = Utils.getColorAttr(context, android.R.attr.colorPrimary);
+
+        boolean setQsFromWall = System.getIntForUser(context.getContentResolver(),
+                    System.QS_PANEL_BG_USE_WALL, 0, UserHandle.USER_CURRENT) == 1;
+        boolean setQsFromResources = System.getIntForUser(context.getContentResolver(),
+                    System.QS_PANEL_BG_USE_FW, 1, UserHandle.USER_CURRENT) == 1;
+
+        int qsBackGroundColor = System.getIntForUser(context.getContentResolver(),
+                System.QS_PANEL_BG_COLOR, activeDefault, UserHandle.USER_CURRENT);
+        int qsBackGroundColorWall = System.getIntForUser(context.getContentResolver(),
+                System.QS_PANEL_BG_COLOR_WALL, activeDefault, UserHandle.USER_CURRENT);
+
         switch (state) {
             case Tile.STATE_UNAVAILABLE:
                 if (!enableQsTileTinting) {
@@ -424,9 +437,16 @@ public abstract class QSTileImpl<TState extends State> implements QSTile {
                 }
             case Tile.STATE_ACTIVE:
                 if (!enableQsTileTinting) {
-                    return Utils.getColorAttr(context, android.R.attr.colorPrimary);
-                } else {
                     return context.getResources().getColor(com.android.systemui.R.color.qs_icon_active_color);
+                } else {
+                    if (setQsFromResources) {
+                        return Utils.getColorAttr(context, android.R.attr.colorPrimary);
+                    } else {
+                        if (setQsFromWall)
+                            return qsBackGroundColorWall;
+                        else
+                            return qsBackGroundColor;
+                    }
                 }
             default:
                 Log.e("QSTile", "Invalid state " + state);
