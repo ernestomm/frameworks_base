@@ -26,6 +26,8 @@ import android.graphics.Color;
 import android.graphics.drawable.Animatable2;
 import android.graphics.drawable.Animatable2.AnimationCallback;
 import android.graphics.drawable.Drawable;
+import android.os.UserHandle;
+import android.provider.Settings.System;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ImageView.ScaleType;
@@ -181,6 +183,14 @@ public class QSIconViewImpl extends QSIconView {
                 int channel = (int) (fromChannel + (toChannel - fromChannel) * fraction);
 
                 if (!enableQsTileTinting) {
+                    setTint(iv, Color.argb(alpha, channel, channel, channel));
+                } else {
+                    setTint(iv, toColor);
+                }
+
+                boolean setQsFromResources = System.getIntForUser(getContext().getContentResolver(),
+                            System.QS_PANEL_BG_USE_FW, 1, UserHandle.USER_CURRENT) == 1;
+                if (setQsFromResources) {
                     setTint(iv, Color.argb(alpha, channel, channel, channel));
                 } else {
                     setTint(iv, toColor);
