@@ -162,4 +162,8 @@
     <!-- Scrim Alpha Value [DO NOT TRANSLATE] -->
     <string name="shutdown_scrim_alpha">0.44f</string>
 
+    <!-- Reboot/Recovery QS Tile -->
+    <string name="quick_settings_reboot_label">Reboot</string>
+    <string name="quick_settings_reboot_recovery_label">Recovery</string>
+
 </resources>

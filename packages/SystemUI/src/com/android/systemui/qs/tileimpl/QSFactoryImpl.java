@@ -43,6 +43,7 @@ import com.android.systemui.qs.tiles.LocationTile;
 import com.android.systemui.qs.tiles.MusicTile;
 import com.android.systemui.qs.tiles.NfcTile;
 import com.android.systemui.qs.tiles.NightDisplayTile;
+import com.android.systemui.qs.tiles.RebootTile;
 import com.android.systemui.qs.tiles.RotationLockTile;
 import com.android.systemui.qs.tiles.SoundTile;
 import com.android.systemui.qs.tiles.ScreenrecordTile;
@@ -125,6 +126,8 @@ public class QSFactoryImpl implements QSFactory {
                 return new ScreenrecordTile(mHost);
             case "heads_up":
                 return new HeadsUpTile(mHost);
+            case "reboot":
+                return new RebootTile(mHost);
         }
 
         // Intent tiles.
