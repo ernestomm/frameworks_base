@@ -159,4 +159,7 @@
     <string name="global_action_restart_ui">SystemUI</string>
     <string name="global_action_restart_soft">Soft Reboot</string>
 
+    <!-- Scrim Alpha Value [DO NOT TRANSLATE] -->
+    <string name="shutdown_scrim_alpha">0.95f</string>
+
 </resources>
