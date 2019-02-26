@@ -41,6 +41,7 @@ import com.android.systemui.qs.tiles.HotspotTile;
 import com.android.systemui.qs.tiles.IntentTile;
 import com.android.systemui.qs.tiles.LocationTile;
 import com.android.systemui.qs.tiles.MusicTile;
+import com.android.systemui.qs.tiles.OneHandTile;
 import com.android.systemui.qs.tiles.NfcTile;
 import com.android.systemui.qs.tiles.NightDisplayTile;
 import com.android.systemui.qs.tiles.RebootTile;
@@ -131,6 +132,8 @@ public class QSFactoryImpl implements QSFactory {
                 return new RebootTile(mHost);
             case "volume_panel":
                 return new VolumeTile(mHost);
+            case "onehand":
+                return new OneHandTile(mHost);
         }
 
         // Intent tiles.
