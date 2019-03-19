@@ -8,7 +8,7 @@ import android.text.TextUtils.TruncateAt;
 import android.util.AttributeSet;
 import android.view.Gravity;
 import android.view.View;
-import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.android.systemui.AutoReinflateContainer;
@@ -122,7 +122,7 @@ public class AmbientIndicationContainer extends AutoReinflateContainer {
     }
 
     public void updatePosition() {
-        FrameLayout.LayoutParams lp = (FrameLayout.LayoutParams) this.getLayoutParams();
+        LinearLayout.LayoutParams lp = (LinearLayout.LayoutParams) this.getLayoutParams();
         lp.gravity = mForcedMediaDoze ? Gravity.CENTER : Gravity.BOTTOM;
         this.setLayoutParams(lp);
     }
