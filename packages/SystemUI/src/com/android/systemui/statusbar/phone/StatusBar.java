@@ -374,8 +374,6 @@ public class StatusBar extends SystemUI implements DemoMode,
      */
     private static final float SRC_MIN_ALPHA = 0.002f;
 
-    private CollapsedStatusBarFragment statusBarFragment;
-
     static {
         boolean onlyCoreApps;
         try {
@@ -908,14 +906,9 @@ public class StatusBar extends SystemUI implements DemoMode,
         Dependency.get(DarkIconDispatcher.class).addDarkReceiver(mNotificationIconAreaController);
         FragmentHostManager.get(mStatusBarWindow)
                 .addTagListener(CollapsedStatusBarFragment.TAG, (tag, fragment) -> {
-                    statusBarFragment = (CollapsedStatusBarFragment) fragment;
+                    CollapsedStatusBarFragment statusBarFragment =
+                            (CollapsedStatusBarFragment) fragment;
                     statusBarFragment.initNotificationIconArea(mNotificationIconAreaController);
-                    mNotificationIconAreaController.setNotificationIconsCountListener(new NotificationIconAreaController.NotificationIconsCountListener(){
-                        @Override
-                        public void onCountChanged(int count){
-                            statusBarFragment.onNotificationsIconsCountChanged(count);
-                        }
-                    });
                     PhoneStatusBarView oldStatusBarView = mStatusBarView;
                     mStatusBarView = (PhoneStatusBarView) fragment.getView();
                     mStatusBarView.setBar(this);
@@ -3458,9 +3451,6 @@ public class StatusBar extends SystemUI implements DemoMode,
 
         mViewHierarchyManager.updateRowStates();
         mScreenPinningRequest.onConfigurationChanged();
-        if (statusBarFragment != null){
-            statusBarFragment.setLandscape(newConfig.orientation != Configuration.ORIENTATION_PORTRAIT);
-        }
     }
 
     @Override
