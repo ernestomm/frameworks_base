@@ -188,4 +188,7 @@
     <!-- System fonts -->
     <java-symbol type="array" name="config_fontPackages" />
 
+    <!-- Whether to show multiuser icon on keyguard -->
+    <java-symbol type="bool" name="config_showMultiuserIconKeyguard" />
+
 </resources>

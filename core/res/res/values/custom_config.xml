@@ -233,4 +233,7 @@
     <!-- Ambient display music ticker -->
     <bool name="config_canForceDozeNotifications">true</bool>
 
+    <!-- Whether to show multiuser icon on keyguard -->
+    <bool name="config_showMultiuserIconKeyguard">true</bool>
+
 </resources>
